@@ -1,7 +1,10 @@
 import './App.css';
 import BookList from "./components/BookList";
+import BookDetails from "./components/BookDetails";
+
 
 function App() {
+  /*
   return (
     <div className="App">
       <header className="App-header">
@@ -11,8 +14,24 @@ function App() {
         </div>
       </header>
       <body>
-      <div className="BookList">
+        <div className="BookList">
       <BookList/>
+      </div>
+      </body>
+    </div>
+  );
+  */
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div className="navbar">
+          <input type="text" placeholder="Search..." />
+          <button>Search</button>
+        </div>
+      </header>
+      <body>
+        <div className="BookDetails">
+      <BookDetails/>
       </div>
       </body>
     </div>

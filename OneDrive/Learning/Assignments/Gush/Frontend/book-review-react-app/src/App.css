@@ -1,13 +1,39 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #333;
   color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  height: 120px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 33%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.navbar input[type="text"] {
+  width: 70%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.navbar button {
+  width: 20%;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.BookList{
+  flex: 1;
+  padding: 50px;
 }

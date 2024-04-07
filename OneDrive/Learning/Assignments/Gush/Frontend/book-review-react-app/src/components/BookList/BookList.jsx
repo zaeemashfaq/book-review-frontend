@@ -1,45 +1,53 @@
 import BookCard from "../BookCard";
 import "./BookList.css";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
-function BookList(){
-    const [isLoading,setIsLoading] = useState(true);
-    const [allBooks,setAllBooks] = useState([]);
+function BookList({ searchResults }) {
 
-    useEffect(() => {
-        // fetch("https://freetestapi.com/api/v1/books")
-        fetch("http://localhost:5000/books")
-          .then(function (res) {
-            console.log(res);
-            return res.json();
-          })
-          .then(function (res) {
-            setAllBooks(res);
-            setIsLoading(false);
-          });
-        }, []);
-    
-    if(isLoading){
-        return(
-            <div className="Loader">
-            Loading...
-            </div>
-        );
-    }
+  const [isLoading, setIsLoading] = useState(true);
+  const [allBooks, setAllBooks] = useState([]);
 
-    else{
-        return(
-            <div className="BookList">
-            {allBooks.map(function (book) {
-                return (
-                  <BookCard
-                    book={book}
-                  />
-                );
-              })}
-            </div>
-        );
-    }
+  
+useEffect(() =>{
+if (!searchResults || searchResults.length === 0) {
+  fetch("http://localhost:5000/books")
+    .then((res) => res.json())
+    .then((res) => {
+      setAllBooks(res);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      setIsLoading(false);
+    });
+  }
+  else{
+    setAllBooks(searchResults);
+    setIsLoading(false);
+  }
+}
+,[searchResults]);
+
+  if (isLoading) {
+    return (
+      <div className="Loader">
+        Loading...
+      </div>
+    );
+  }
+  else {
+    return (
+      <div className="BookList">
+        {allBooks.map(function (book) {
+          return (
+            <BookCard
+              book={book}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 
 }
 export default BookList;

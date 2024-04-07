@@ -39,7 +39,7 @@ function BookDetails() {
             <h2 className="Title">{book.title}</h2>
             <h3 className="Author">{book.author}</h3>
             <p className="Description">{book.description}</p>
-            <RatingComponent rating={book.overall_rating} />
+            <RatingComponent rating={book.overall_rating} max_rating={5} size={0.75} />
           </div>
         </div>
         <div className="Reviews">

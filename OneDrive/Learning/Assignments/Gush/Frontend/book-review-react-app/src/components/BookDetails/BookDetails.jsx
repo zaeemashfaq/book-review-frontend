@@ -9,6 +9,10 @@ function BookDetails() {
   
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState({});
+  const [name, setName] = useState("");
+  const [reviewTitle, setReviewTitle] = useState("");
+  const [detailedReview, setDetailedReview] = useState("");
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     fetch(`http://localhost:5000/books/${id}`)
@@ -21,6 +25,38 @@ function BookDetails() {
         setIsLoading(false);
       });
   }, [id]);
+
+  const handleSubmit = () => {
+    const reviewData = {
+      book_id: book.id,
+      reviewer: name,
+      review_title: reviewTitle,
+      review_detail: detailedReview,
+      rating: rating
+    };
+    fetch("http://localhost:5000/user-reviews", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(reviewData)
+  })
+  .then(response => {
+    if (response.ok) {
+      setName("");
+      setReviewTitle("");
+      setDetailedReview("");
+      setRating(0);
+    } else {
+      throw new Error("Failed to submit review");
+    }
+  })
+  .catch(error => {
+    console.error("Error submitting review:", error);
+    alert("Failed to submit review. Please try again later.");
+  });
+};
+
   if (isLoading) {
     return (
       <div className="Loader">
@@ -41,6 +77,14 @@ function BookDetails() {
             <p className="Description">{book.description}</p>
             <RatingComponent rating={book.overall_rating} max_rating={5} size={0.75} />
           </div>
+        </div>
+        <div className="AddReview">
+        <h3>Add Review</h3>
+          <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" placeholder="Review Title" value={reviewTitle} onChange={(e) => setReviewTitle(e.target.value)} />
+          <input type="text" placeholder="Detailed Review" value={detailedReview} onChange={(e) => setDetailedReview(e.target.value)} />
+          <input type="number" placeholder="Rating out of 5" value={rating} onChange={(e) => setRating(e.target.value)} />
+          <button onClick={handleSubmit}>Submit Review</button>
         </div>
         <div className="Reviews">
           <h3>User Reviews:</h3>

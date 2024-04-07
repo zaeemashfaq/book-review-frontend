@@ -1,0 +1,35 @@
+.BookDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: flex-start;
+  }
+  
+  .Details {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .Cover {
+    width: 20%;
+    padding-right: 20px;
+  }
+  
+  .Cover img {
+    width: auto;
+    height: 100%;
+  }
+  
+  .BookInfo {
+    width: 80%;
+  }
+  
+  .Title,
+  .Author,
+  .Description {
+    margin: 0;
+  }
+  
+  .Reviews {
+    margin-top: auto;
+  }

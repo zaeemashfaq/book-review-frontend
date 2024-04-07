@@ -8,9 +8,9 @@ function UserReview({user_review}){
             <div className="UserInfo">
                 <p>{username}</p>
                 <RatingComponent rating={user_rating} />
-                <p className="ReviewTitle">{user_review_title}</p>
+                <div className="ReviewTitle">{user_review_title}</div>
             </div>
-            <p className="Review">{user_review_content}</p>
+            <div className="Review">{user_review_content}</div>
         </div>
     );
 }

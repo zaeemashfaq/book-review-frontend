@@ -7,7 +7,8 @@ function BookList(){
     const [allBooks,setAllBooks] = useState([]);
 
     useEffect(() => {
-        fetch("https://freetestapi.com/api/v1/books")
+        // fetch("https://freetestapi.com/api/v1/books")
+        fetch("http://localhost:5000/books")
           .then(function (res) {
             console.log(res);
             return res.json();

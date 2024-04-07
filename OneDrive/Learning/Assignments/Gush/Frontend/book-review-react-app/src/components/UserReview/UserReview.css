@@ -1,0 +1,28 @@
+.UserReview {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .UserInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .UserInfo p {
+    align-content: flex-start;
+    margin: 0;
+    margin-right: 10px;
+  }
+  
+  .ReviewTitle {
+    font-weight: bold;
+  }
+  
+  .Review {
+    font-size: smaller;
+    margin-top: 0;
+  }

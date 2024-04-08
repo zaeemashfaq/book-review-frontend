@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import BookList from "./components/BookList";
 import BookDetails from "./components/BookDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="navbar">
-          <input type="text" placeholder="Search by title or author..." value={searchText} onChange={(e) => setSearchText(e.target.value)}/>
+          <input type="text" placeholder="Search by title or author..." value={searchText} onChange={(e) => setSearchText(e.target.value)} />
           <button onClick={handleSearch}>Search</button>
         </div>
       </header>

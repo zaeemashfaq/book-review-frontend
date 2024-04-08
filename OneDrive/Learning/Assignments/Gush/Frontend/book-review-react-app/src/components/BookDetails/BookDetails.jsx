@@ -1,6 +1,7 @@
 import "./BookDetails.css";
 import UserReview from "../UserReview";
 import RatingComponent from "../RatingComponent";
+import RatingInputComponent from "../RatingInputComponent";
 import { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -83,7 +84,12 @@ function BookDetails() {
           <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
           <input type="text" placeholder="Review Title" value={reviewTitle} onChange={(e) => setReviewTitle(e.target.value)} />
           <input type="text" placeholder="Detailed Review" value={detailedReview} onChange={(e) => setDetailedReview(e.target.value)} />
-          <input type="number" placeholder="Rating out of 5" value={rating} onChange={(e) => setRating(e.target.value)} />
+          <RatingInputComponent
+            rating={rating}
+            onRatingChange={setRating}
+            max_rating={5}
+            size={0.75}
+          />
           <button onClick={handleSubmit}>Submit Review</button>
         </div>
         <div className="Reviews">

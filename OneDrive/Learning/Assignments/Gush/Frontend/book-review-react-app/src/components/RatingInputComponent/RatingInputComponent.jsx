@@ -1,11 +1,19 @@
-import "./RatingComponent.css";
+import "./RatingInputComponent.css";
+import { useState } from "react";
 import Icon from "@mdi/react";
 import classNames from "classnames";
 import { mdiStar } from "@mdi/js";
 
 
-function RatingComponent({ rating, max_rating, size }) {
-    const arr = new Array(max_rating).fill(0);
+function RatingInputComponent({rating, onRatingChange, max_rating, size }) {
+    // const [rating, setRating] = useState(0);
+    // setRating(parentRating);
+    // const arr = new Array(max_rating).fill(0);
+
+    const handleRatingClick = (selectedRating) => {
+        // setRating(selectedRating);
+        onRatingChange(selectedRating);
+      };
     return (
         <div className="ratingComponent">
             {new Array(max_rating).fill(0).map((_, index) => {
@@ -18,10 +26,11 @@ function RatingComponent({ rating, max_rating, size }) {
                         })}
                         path={mdiStar}
                         size={size}
+                        onClick={() => handleRatingClick(index + 1)}
                     />
                 );
             })}
         </div>
     );
 }
-export default RatingComponent;
+export default RatingInputComponent;

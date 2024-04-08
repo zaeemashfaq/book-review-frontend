@@ -7,26 +7,26 @@ function BookList({ searchResults }) {
   const [isLoading, setIsLoading] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
 
-  
-useEffect(() =>{
-if (!searchResults || searchResults.length === 0) {
-  fetch("http://localhost:5000/books")
-    .then((res) => res.json())
-    .then((res) => {
-      setAllBooks(res);
+
+  useEffect(() => {
+    if (!searchResults || searchResults.length === 0) {
+      fetch("http://localhost:5000/books")
+        .then((res) => res.json())
+        .then((res) => {
+          setAllBooks(res);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setIsLoading(false);
+        });
+    }
+    else {
+      setAllBooks(searchResults);
       setIsLoading(false);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      setIsLoading(false);
-    });
+    }
   }
-  else{
-    setAllBooks(searchResults);
-    setIsLoading(false);
-  }
-}
-,[searchResults]);
+    , [searchResults]);
 
   if (isLoading) {
     return (

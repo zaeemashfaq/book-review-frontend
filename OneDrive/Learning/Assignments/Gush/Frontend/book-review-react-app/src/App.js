@@ -10,7 +10,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/books/search?search_text=${searchText}`)
+    fetch(`http://host.docker.internal:5000/books/search?search_text=${searchText}`)
       .then((res) => res.json())
       .then((res) => {
         setSearchResults(res);

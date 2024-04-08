@@ -11,7 +11,7 @@ function BookList({ searchResults }) {
 
   useEffect(() => {
     if (!searchResults || searchResults.length === 0) {
-      fetch(`http://localhost:5000/books/paged?page_no=${pageNumber}&page_size=${pageSize}`)
+      fetch(`http://host.docker.internal:5000/books/paged?page_no=${pageNumber}&page_size=${pageSize}`)
         .then((res) => res.json())
         .then((res) => {
           setAllBooks(res);

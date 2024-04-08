@@ -15,7 +15,7 @@ function BookDetails() {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/books/${id}`)
+    fetch(`http://host.docker.internal:5000/books/${id}`)
       .then(function (res) {
         console.log(res);
         return res.json();
@@ -38,7 +38,7 @@ function BookDetails() {
         review_detail: detailedReview,
         rating: rating
       };
-      fetch("http://localhost:5000/user-reviews", {
+      fetch("http://host.docker.internal:5000/user-reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

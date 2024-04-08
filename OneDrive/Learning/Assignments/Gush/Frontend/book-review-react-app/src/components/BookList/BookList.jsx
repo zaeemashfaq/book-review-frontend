@@ -11,7 +11,8 @@ function BookList({ searchResults }) {
 
   useEffect(() => {
     if (!searchResults || searchResults.length === 0) {
-      fetch(`http://host.docker.internal:5000/books/paged?page_no=${pageNumber}&page_size=${pageSize}`)
+      // fetch(`http://host.docker.internal:5000/books/paged?page_no=${pageNumber}&page_size=${pageSize}`)
+      fetch(`http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:5000/books/paged?page_no=${pageNumber}&page_size=${pageSize}`)
         .then((res) => res.json())
         .then((res) => {
           setAllBooks(res);

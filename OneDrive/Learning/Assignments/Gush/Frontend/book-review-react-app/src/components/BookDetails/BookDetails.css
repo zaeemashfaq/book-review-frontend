@@ -11,17 +11,28 @@
   }
   
   .Cover {
-    width: 20%;
+    flex: 1;
     padding-right: 20px;
   }
   
   .Cover img {
-    width: auto;
+    width: 300px;
     height: 100%;
   }
   
+  @media only screen and (max-width: 600px) {
+    .Details{
+      flex-direction: column;
+    }
+    .Cover{
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+
   .BookInfo {
-    width: 80%;
+    flex: 1;
   }
   
   .Title,
@@ -32,4 +43,10 @@
   
   .Reviews {
     margin-top: auto;
+  }
+
+  .AddReview{
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
   }

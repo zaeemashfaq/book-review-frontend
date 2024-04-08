@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 
 function BookDetails() {
   const { id } = useParams();
-  
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState({});
   const [name, setName] = useState("");
@@ -83,7 +82,7 @@ function BookDetails() {
         <h3>Add Review</h3>
           <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
           <input type="text" placeholder="Review Title" value={reviewTitle} onChange={(e) => setReviewTitle(e.target.value)} />
-          <input type="text" placeholder="Detailed Review" value={detailedReview} onChange={(e) => setDetailedReview(e.target.value)} />
+          <textarea type="text" placeholder="Detailed Review" value={detailedReview} onChange={(e) => setDetailedReview(e.target.value)} />
           <RatingInputComponent
             rating={rating}
             onRatingChange={setRating}

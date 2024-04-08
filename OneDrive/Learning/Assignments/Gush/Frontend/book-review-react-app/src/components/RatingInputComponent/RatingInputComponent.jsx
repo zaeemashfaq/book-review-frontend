@@ -6,12 +6,8 @@ import { mdiStar } from "@mdi/js";
 
 
 function RatingInputComponent({rating, onRatingChange, max_rating, size }) {
-    // const [rating, setRating] = useState(0);
-    // setRating(parentRating);
-    // const arr = new Array(max_rating).fill(0);
 
     const handleRatingClick = (selectedRating) => {
-        // setRating(selectedRating);
         onRatingChange(selectedRating);
       };
     return (

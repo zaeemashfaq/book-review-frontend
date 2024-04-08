@@ -6,11 +6,12 @@ function BookList({ searchResults }) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
-
+  const [pageNumber, setPageNumber] = useState(0);
+  const pageSize = 10;
 
   useEffect(() => {
     if (!searchResults || searchResults.length === 0) {
-      fetch("http://localhost:5000/books")
+      fetch(`http://localhost:5000/books/paged?page_no=${pageNumber}&page_size=${pageSize}`)
         .then((res) => res.json())
         .then((res) => {
           setAllBooks(res);
@@ -26,8 +27,16 @@ function BookList({ searchResults }) {
       setIsLoading(false);
     }
   }
-    , [searchResults]);
+    , [searchResults,pageNumber]);
 
+  const handlePrev = () => {
+    if (pageNumber > 0) {
+      setPageNumber(pageNumber-1);
+    }
+  }
+  const handleNext = () => {
+    setPageNumber(pageNumber+1);
+  }
   if (isLoading) {
     return (
       <div className="Loader">
@@ -37,14 +46,20 @@ function BookList({ searchResults }) {
   }
   else {
     return (
-      <div className="BookList">
-        {allBooks.map(function (book) {
-          return (
-            <BookCard
-              book={book}
-            />
-          );
-        })}
+      <div className="ListContainer">
+        <div className="BookList">
+          {allBooks.map(function (book) {
+            return (
+              <BookCard
+                book={book}
+              />
+            );
+          })}
+        </div>
+        <div className="PageNavigation">
+          <button onClick={handlePrev}>Prev</button>
+          <button onClick={handleNext}>Next</button>
+        </div>
       </div>
     );
   }

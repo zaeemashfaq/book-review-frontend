@@ -2,7 +2,7 @@ import "./BookDetails.css";
 import UserReview from "../UserReview";
 import RatingComponent from "../RatingComponent";
 import RatingInputComponent from "../RatingInputComponent";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function BookDetails() {
@@ -27,35 +27,40 @@ function BookDetails() {
   }, [id]);
 
   const handleSubmit = () => {
-    const reviewData = {
-      book_id: book.id,
-      reviewer: name,
-      review_title: reviewTitle,
-      review_detail: detailedReview,
-      rating: rating
-    };
-    fetch("http://localhost:5000/user-reviews", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(reviewData)
-  })
-  .then(response => {
-    if (response.ok) {
-      setName("");
-      setReviewTitle("");
-      setDetailedReview("");
-      setRating(0);
-    } else {
-      throw new Error("Failed to submit review");
+    if (!name || !reviewTitle || !detailedReview) {
+      alert("All fields must be filled prior to submitting review!");
     }
-  })
-  .catch(error => {
-    console.error("Error submitting review:", error);
-    alert("Failed to submit review. Please try again later.");
-  });
-};
+    else {
+      const reviewData = {
+        book_id: book.id,
+        reviewer: name,
+        review_title: reviewTitle,
+        review_detail: detailedReview,
+        rating: rating
+      };
+      fetch("http://localhost:5000/user-reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(reviewData)
+      })
+        .then(response => {
+          if (response.ok) {
+            setName("");
+            setReviewTitle("");
+            setDetailedReview("");
+            setRating(0);
+          } else {
+            throw new Error("Failed to submit review");
+          }
+        })
+        .catch(error => {
+          console.error("Error submitting review:", error);
+          alert("Failed to submit review. Please try again later.");
+        });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -79,7 +84,7 @@ function BookDetails() {
           </div>
         </div>
         <div className="AddReview">
-        <h3>Add Review</h3>
+          <h3>Add Review</h3>
           <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
           <input type="text" placeholder="Review Title" value={reviewTitle} onChange={(e) => setReviewTitle(e.target.value)} />
           <textarea type="text" placeholder="Detailed Review" value={detailedReview} onChange={(e) => setDetailedReview(e.target.value)} />

@@ -16,7 +16,7 @@ function BookDetails() {
 
   useEffect(() => {
     // fetch(`http://host.docker.internal:5000/books/${id}`)
-    fetch(`http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:5000/books/${id}`)
+    fetch(`http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:80/books/${id}`)
       .then(function (res) {
         console.log(res);
         return res.json();
@@ -40,7 +40,7 @@ function BookDetails() {
         rating: rating
       };
       // fetch("http://host.docker.internal:5000/user-reviews", {
-      fetch("http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:5000/user-reviews", {
+      fetch("http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:80/user-reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

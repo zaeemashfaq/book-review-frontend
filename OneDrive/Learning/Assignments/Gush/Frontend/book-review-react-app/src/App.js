@@ -10,8 +10,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/books/search?search_text=${searchText}`)
-    // fetch(`http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:80/books/search?search_text=${searchText}`)
+    // fetch(`http://localhost:5000/books/search?search_text=${searchText}`)
+    fetch(`http://ec2-3-109-2-208.ap-south-1.compute.amazonaws.com/api/books/search?search_text=${searchText}`)
       .then((res) => res.json())
       .then((res) => {
         setSearchResults(res);

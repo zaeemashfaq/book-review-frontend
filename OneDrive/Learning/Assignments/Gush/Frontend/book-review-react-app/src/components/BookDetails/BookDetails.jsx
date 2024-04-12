@@ -15,8 +15,8 @@ function BookDetails() {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/books/${id}`)
-    // fetch(`http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:80/books/${id}`)
+    // fetch(`http://localhost:5000/books/${id}`)
+    fetch(`http://ec2-3-109-2-208.ap-south-1.compute.amazonaws.com/api/books/${id}`)
       .then(function (res) {
         console.log(res);
         return res.json();
@@ -39,8 +39,8 @@ function BookDetails() {
         review_detail: detailedReview,
         rating: rating
       };
-      fetch("http://localhost:5000/user-reviews", {
-      // fetch("http://ec2-13-127-112-45.ap-south-1.compute.amazonaws.com:80/user-reviews", {
+      // fetch("http://localhost:5000/user-reviews", {
+      fetch("http://ec2-3-109-2-208.ap-south-1.compute.amazonaws.com/api/user-reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
